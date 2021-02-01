@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  node:
+    container_name: nodejs
+    restart: unless-stopped
+    image: node:lts-alpine
+    build: .
+    working_dir: /app/node/api
+    volumes:
+    - .:/app/node/api
+    command: yarn go
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+    ports:
+      - 3333:3333
+
+  db:
+    image: postgres
+    container_name: postgresdb
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+
+
