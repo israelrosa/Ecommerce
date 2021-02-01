@@ -4,7 +4,7 @@ import { createConnection } from 'typeorm';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import router from '@shared/routes';
-import AppError from '@shared/Error/AppError';
+import AppError from '@shared/errors/AppError';
 
 (async () => {
   await createConnection();
