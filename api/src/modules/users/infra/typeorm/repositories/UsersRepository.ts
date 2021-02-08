@@ -26,8 +26,8 @@ class UsersRepository implements IUsersRepository {
       contactNumber,
     });
 
-    await this.ormRepository.save(user);
-    return user;
+    const result = await this.ormRepository.save(user);
+    return result;
   }
 
   public async findById(userId: string): Promise<User | undefined> {

@@ -5,7 +5,7 @@ import Product from '../typeorm/entities/Products';
 
 @injectable()
 export default class CreateProductsService {
-  productsRepository: IProductsRepository;
+  private productsRepository: IProductsRepository;
 
   constructor(
     @inject('ProductsRepository') productsRepository: IProductsRepository,

@@ -1,5 +1,5 @@
-import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 import AppError from '@shared/errors/AppError';
+import FakeHashProvider from '@shared/providers/HashProvider/fakes/FakeHashProvider';
 import FakeUsersRepository from '../typeorm/repositories/fakes/FakeUsersRepository';
 import UpdateProfileService from './UpdateProfileService';
 

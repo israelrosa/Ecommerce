@@ -4,7 +4,7 @@ import { inject, injectable } from 'tsyringe';
 
 @injectable()
 export default class DeleteProductsService {
-  productsRepository: IProductsRepository;
+  private productsRepository: IProductsRepository;
 
   constructor(
     @inject('ProductsRepository') productsRepository: IProductsRepository,

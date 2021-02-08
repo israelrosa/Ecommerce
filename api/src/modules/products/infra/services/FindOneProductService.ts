@@ -1,10 +1,11 @@
 import IProductsRepository from '@modules/products/interfaces/IProductsRepository';
 import AppError from '@shared/errors/AppError';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import Product from '../typeorm/entities/Products';
 
+@injectable()
 export default class FindOneProductsService {
-  productsRepository: IProductsRepository;
+  private productsRepository: IProductsRepository;
 
   constructor(
     @inject('ProductsRepository') productsRepository: IProductsRepository,

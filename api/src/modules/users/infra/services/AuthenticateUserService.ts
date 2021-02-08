@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 import authConfig from '@config/authConfig';
 import AppError from '@shared/errors/AppError';
 import { sign } from 'jsonwebtoken';
 import IUsersRepository from '@modules/users/interfaces/IUsersRepository';
+import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
 import User from '../typeorm/entities/User';
 
 interface IRequest {
@@ -24,7 +24,8 @@ class AuthenticateUserService {
   private hashProvider: IHashProvider;
 
   constructor(
-    @inject('UsersRepository') userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    userRepository: IUsersRepository,
     @inject('HashProvider')
     HashProvider: IHashProvider,
   ) {

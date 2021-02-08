@@ -10,8 +10,11 @@ export default class AdminTypesRepository implements IAdminTypesRepository {
     this.ormRepository = getRepository(AdminType);
   }
 
-  async create(type: string): Promise<AdminType> {
-    const data = await this.ormRepository.create({ type });
+  async create(type: string, permission: boolean): Promise<AdminType> {
+    const data = await this.ormRepository.create({
+      type,
+      adminPermissions: permission,
+    });
 
     const result = await this.ormRepository.save(data);
 

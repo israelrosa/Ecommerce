@@ -1,6 +1,6 @@
 import IProductsRepository from '@modules/products/interfaces/IProductsRepository';
 import AppError from '@shared/errors/AppError';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import Product from '../typeorm/entities/Products';
 
 interface IParams {
@@ -11,9 +11,9 @@ interface IParams {
   discount?: number;
   categoryId: string;
 }
-
+@injectable()
 export default class UpdateProductsService {
-  productsRepository: IProductsRepository;
+  private productsRepository: IProductsRepository;
 
   constructor(
     @inject('ProductsRepository') productsRepository: IProductsRepository,

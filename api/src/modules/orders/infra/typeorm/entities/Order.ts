@@ -1,5 +1,6 @@
-import OrderProduct from '@modules/orders/dependencies/orderProducts/typeorm/entities/OrderProduct';
-import OrderStatus from '@modules/orders/dependencies/orderStatus/typeorm/entities/OrderStatus';
+import Location from '@modules/locations/infra/typeorm/entities/Location';
+import OrderProduct from '@modules/orders/dependencies/orderProducts/infra/typeorm/entities/OrderProduct';
+import OrderStatus from '@modules/orders/dependencies/orderStatus/infra/typeorm/entities/OrderStatus';
 import Payment from '@modules/payments/infra/typeorm/entities/Payment';
 import User from '@modules/users/infra/typeorm/entities/User';
 import {

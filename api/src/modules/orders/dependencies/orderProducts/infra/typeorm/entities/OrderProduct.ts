@@ -1,5 +1,5 @@
-import Order from '@modules/orders/typeorm/entities/Order';
-import Product from '@modules/products/typeorm/entities/Products';
+import Order from '@modules/orders/infra/typeorm/entities/Order';
+import Product from '@modules/products/infra/typeorm/entities/Products';
 import {
   Column,
   Entity,
@@ -19,7 +19,7 @@ export default class OrderProduct {
   @Column()
   orderId: string;
 
-  @ManyToOne(() => Product)
+  @ManyToOne(() => Product, product => product.orderProducts)
   @JoinColumn({ name: 'productId' })
   product: Product;
 

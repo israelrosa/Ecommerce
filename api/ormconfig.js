@@ -10,9 +10,9 @@ module.exports = {
   synchronize: true,
   logging: false,
   entities: [
-    './src/modules/**/infra/entities/*.ts',
-    './src/modules/**/**/infra/entities/*.ts',
-    './src/modules/**/**/**/infra/entities/*.ts',
+    './src/modules/**/infra/typeorm/entities/*.ts',
+    './src/modules/**/**/infra/typeorm/entities/*.ts',
+    './src/modules/**/**/**/infra/typeorm/entities/*.ts',
   ],
   migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
   cli: {

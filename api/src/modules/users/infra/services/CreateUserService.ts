@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/interfaces/IUsersRepository';
 import AppError from '@shared/errors/AppError';
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
   firstname: string;
@@ -30,7 +30,7 @@ class CreateUserService {
     this.hashProvider = hashProvider;
   }
 
-  public async execute({
+  async execute({
     email,
     firstname,
     lastname,

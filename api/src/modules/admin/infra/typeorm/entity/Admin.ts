@@ -1,4 +1,4 @@
-import AdminType from '@modules/admin/dependencies/adminTypes/typeorm/entities/AdminType';
+import AdminType from '@modules/admin/dependencies/adminTypes/infra/typeorm/entities/AdminType';
 import { Exclude } from 'class-transformer';
 import {
   Column,
@@ -16,7 +16,7 @@ export default class Admin {
   @Column()
   username: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -26,7 +26,7 @@ export default class Admin {
   @Column()
   adminTypeId: string;
 
-  @ManyToOne(() => AdminType)
+  @ManyToOne(() => AdminType, { eager: true })
   @JoinColumn({ name: 'adminTypeId' })
   type: AdminType;
 }

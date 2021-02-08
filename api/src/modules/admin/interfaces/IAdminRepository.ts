@@ -6,5 +6,8 @@ export default interface IAdminRepository {
   update(admin: Admin): Promise<Admin>;
   delete(id: string): Promise<void>;
   findById(id: string): Promise<Admin | undefined>;
+  findByEmail(email: string): Promise<Admin | undefined>;
+  findByUsername(username: string): Promise<Admin | undefined>;
+
   showAll(): Promise<Admin[]>;
 }

@@ -7,4 +7,7 @@ export default class AdminType {
 
   @Column()
   type: string;
+
+  @Column()
+  adminPermissions: boolean;
 }

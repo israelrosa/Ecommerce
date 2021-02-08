@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
 import 'reflect-metadata';
+import 'express-async-errors';
 import { createConnection } from 'typeorm';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import router from '@shared/routes';
 import AppError from '@shared/errors/AppError';
+import '../container/index';
 
 (async () => {
   await createConnection();

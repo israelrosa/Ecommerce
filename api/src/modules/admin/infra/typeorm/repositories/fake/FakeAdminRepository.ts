@@ -39,6 +39,18 @@ export default class FakeAdminRepository implements IAdminRepository {
     return admin;
   }
 
+  async findByEmail(email: string): Promise<Admin | undefined> {
+    const admin = this.admins.find(adm => adm.email === email);
+
+    return admin;
+  }
+
+  async findByUsername(username: string): Promise<Admin | undefined> {
+    const admin = this.admins.find(adm => adm.username === username);
+
+    return admin;
+  }
+
   async showAll(): Promise<Admin[]> {
     return this.admins;
   }

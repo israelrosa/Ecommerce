@@ -43,6 +43,18 @@ export default class AdminRepository implements IAdminRepository {
     return result;
   }
 
+  async findByEmail(email: string): Promise<Admin | undefined> {
+    const result = await this.ormRepository.findOne({ where: { email } });
+
+    return result;
+  }
+
+  async findByUsername(username: string): Promise<Admin | undefined> {
+    const result = await this.ormRepository.findOne({ where: { username } });
+
+    return result;
+  }
+
   async showAll(): Promise<Admin[]> {
     const result = await this.ormRepository.find();
 

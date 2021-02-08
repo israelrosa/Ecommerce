@@ -1,3 +1,4 @@
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import AuthenticateUserService from '../services/AuthenticateUserService';
@@ -8,7 +9,7 @@ export default class UsersController {
     const { email, firstname, lastname, password, contactNumber } = req.body;
     const createUser = container.resolve(CreateUserService);
 
-    const data = createUser.execute({
+    const data = await createUser.execute({
       email,
       firstname,
       lastname,
@@ -29,6 +30,6 @@ export default class UsersController {
       email,
     });
 
-    return res.json(data);
+    return res.json(classToClass(data));
   }
 }
