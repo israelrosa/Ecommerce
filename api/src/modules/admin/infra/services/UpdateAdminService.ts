@@ -40,7 +40,7 @@ export default class UpdateAdminService {
       );
     }
 
-    if (!admin.type.adminPermissions || admin.id !== id) {
+    if (!admin.type.updateAdmins || admin.id !== id) {
       throw new AppError('O ADM não tem permissão.');
     }
 

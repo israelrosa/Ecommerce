@@ -31,7 +31,7 @@ export default class DeleteAdminService {
       );
     }
 
-    if (!admin.type.adminPermissions) {
+    if (!admin.type.deleteAdmins) {
       throw new AppError('O ADM não tem permissão.');
     }
 

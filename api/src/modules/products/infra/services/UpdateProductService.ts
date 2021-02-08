@@ -1,9 +1,11 @@
+import IAdminRepository from '@modules/admin/interfaces/IAdminRepository';
 import IProductsRepository from '@modules/products/interfaces/IProductsRepository';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import Product from '../typeorm/entities/Products';
 
 interface IParams {
+  adminId: string;
   productId: string;
   title: string;
   description: string;
@@ -15,10 +17,14 @@ interface IParams {
 export default class UpdateProductsService {
   private productsRepository: IProductsRepository;
 
+  private adminRepository: IAdminRepository;
+
   constructor(
     @inject('ProductsRepository') productsRepository: IProductsRepository,
+    @inject('AdminRepository') adminRepository: IAdminRepository,
   ) {
     this.productsRepository = productsRepository;
+    this.adminRepository = adminRepository;
   }
 
   async execute({
@@ -28,7 +34,18 @@ export default class UpdateProductsService {
     price,
     title,
     discount,
+    adminId,
   }: IParams): Promise<Product> {
+    const admin = await this.adminRepository.findById(adminId);
+
+    if (!admin) {
+      throw new AppError('Apenas admins podem criar produtos.');
+    }
+
+    if (!admin.type.updateProducts) {
+      throw new AppError('O ADM não tem permissão.');
+    }
+
     const product = await this.productsRepository.findById(productId);
 
     if (!product) {

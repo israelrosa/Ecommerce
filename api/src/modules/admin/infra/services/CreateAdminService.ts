@@ -43,7 +43,7 @@ export default class CreateAdminService {
       );
     }
 
-    if (!admin.type.adminPermissions) {
+    if (!admin.type.createAdmins) {
       throw new AppError('O ADM não tem permissão.');
     }
 

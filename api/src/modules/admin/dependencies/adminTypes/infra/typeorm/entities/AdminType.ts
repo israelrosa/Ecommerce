@@ -9,5 +9,38 @@ export default class AdminType {
   type: string;
 
   @Column()
-  adminPermissions: boolean;
+  createAdmins: boolean;
+
+  @Column()
+  deleteAdmins: boolean;
+
+  @Column()
+  updateAdmins: boolean;
+
+  @Column()
+  createProducts: boolean;
+
+  @Column()
+  deleteProducts: boolean;
+
+  @Column()
+  updateProducts: boolean;
+
+  @Column()
+  deleteLocations: boolean;
+
+  @Column()
+  updateLocations: boolean;
+
+  @Column()
+  deleteOrders: boolean;
+
+  @Column()
+  updateOrders: boolean;
+
+  @Column()
+  deleteUsers: boolean;
+
+  @Column()
+  updateUsers: boolean;
 }
