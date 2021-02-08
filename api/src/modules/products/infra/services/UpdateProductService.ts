@@ -14,7 +14,7 @@ interface IParams {
   categoryId: string;
 }
 @injectable()
-export default class UpdateProductsService {
+export default class UpdateProductService {
   private productsRepository: IProductsRepository;
 
   private adminRepository: IAdminRepository;

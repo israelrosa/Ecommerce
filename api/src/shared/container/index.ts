@@ -2,6 +2,8 @@ import AdminTypesRepository from '@modules/admin/dependencies/adminTypes/infra/t
 import IAdminTypesRepository from '@modules/admin/dependencies/adminTypes/interfaces/IAdminTypesRepository';
 import AdminRepository from '@modules/admin/infra/typeorm/repositories/AdminRepository';
 import IAdminRepository from '@modules/admin/interfaces/IAdminRepository';
+import LocationsRepository from '@modules/locations/infra/typeorm/repositories/LocationsRepository';
+import ILocationsRepository from '@modules/locations/interfaces/ILocationsRepository';
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import IProductsRepository from '@modules/products/interfaces/IProductsRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
@@ -27,4 +29,9 @@ container.registerSingleton<IAdminRepository>(
 container.registerSingleton<IAdminTypesRepository>(
   'AdminTypesRepository',
   AdminTypesRepository,
+);
+
+container.registerSingleton<ILocationsRepository>(
+  'LocationsRepository',
+  LocationsRepository,
 );
