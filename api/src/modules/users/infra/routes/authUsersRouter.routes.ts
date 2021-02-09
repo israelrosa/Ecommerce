@@ -5,7 +5,7 @@ const authUsersController = new AuthUsersController();
 
 const authUsersRouter = Router();
 
-authUsersRouter.delete('/', authUsersController.delete);
+authUsersRouter.delete('/delete', authUsersController.delete);
 
 authUsersRouter.put('/update', authUsersController.update);
 

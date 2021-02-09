@@ -39,7 +39,7 @@ export default class CreateAdminSessionService {
       throw new AppError('Combinação Incorreta.');
     }
 
-    const token = sign({}, authConfig.secret, {
+    const token = sign({ admin: true }, authConfig.secret, {
       subject: admin.id,
       expiresIn: authConfig.expiresIn,
     });

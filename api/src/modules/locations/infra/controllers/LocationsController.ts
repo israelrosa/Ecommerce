@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import CreateLocationService from '../services/CreateLocationService';
 import DeleteLocationService from '../services/DeleteLocationService';
 import ShowUserLocationsService from '../services/ShowUserLocationsService';
-import UpdateLocationService from '../services/updateLocationService';
+import UpdateLocationService from '../services/UpdateLocationService';
 
 export default class LocationsController {
   async create(req: Request, res: Response): Promise<Response> {
@@ -28,17 +28,19 @@ export default class LocationsController {
 
   async delete(req: Request, res: Response): Promise<Response> {
     const userId = req.user.id;
+    const isAdmin = req.user.admin;
 
     const { id } = req.params;
     const deleteLocation = container.resolve(DeleteLocationService);
 
-    await deleteLocation.execute({ id, userId });
+    await deleteLocation.execute({ id, userId, isAdmin });
 
     return res.json('A localização foi deletada com sucesso!');
   }
 
   async update(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
+    const isAdmin = req.user.admin;
 
     const userId = req.user.id;
 
@@ -54,6 +56,7 @@ export default class LocationsController {
       street,
       userId,
       zipCode,
+      isAdmin,
     });
 
     return res.json(data);

@@ -3,25 +3,18 @@ import AppError from '@shared/errors/AppError';
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
-interface IParams {
-  req: Request;
-  _: Response;
-  next: NextFunction;
-  arg: string;
-}
 interface ITokenPayload {
+  admin: boolean;
   iat: number;
   exp: number;
   sub: string;
 }
 
-export default function ensureAuthentication({
-  arg,
-  next,
-  req,
-  _,
-}: IParams): void {
-  console.log(arg);
+export default function ensureAuthentication(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void {
   const authToken = req.headers.authorization;
 
   if (!authToken) {
@@ -33,9 +26,10 @@ export default function ensureAuthentication({
   try {
     const decoded = verify(token, authConfig.secret);
 
-    const { sub } = decoded as ITokenPayload;
+    const { sub, admin } = decoded as ITokenPayload;
 
     req.user.id = sub;
+    req.user.admin = admin;
 
     return next();
   } catch (err) {

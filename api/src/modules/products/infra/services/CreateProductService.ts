@@ -34,7 +34,7 @@ export default class CreateProductsService {
     const admin = await this.adminRepository.findById(adminId);
 
     if (!admin) {
-      throw new AppError('Apenas admins podem criar produtos.');
+      throw new AppError('O ADM não existe.');
     }
 
     if (!admin.type.createProducts) {

@@ -5,6 +5,7 @@ import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 
 interface IParams {
+  isAdmin: boolean;
   userId: string;
   id: string;
 }
@@ -27,21 +28,23 @@ export default class DeleteLocationService {
     this.adminRepository = adminRepository;
   }
 
-  async execute({ id, userId }: IParams): Promise<void> {
-    const user = await this.usersRepository.findById(userId);
+  async execute({ id, userId, isAdmin }: IParams): Promise<void> {
+    if (isAdmin) {
+      const admin = await this.adminRepository.findById(userId);
 
+      if (admin) {
+        if (admin.type.deleteLocations) {
+          await this.locationsRepository.delete(id);
+        } else {
+          throw new AppError('O ADM não tem permissão.');
+        }
+      }
+      throw new AppError('O ADM não existe.');
+    }
+    const user = await this.usersRepository.findById(userId);
     if (user) {
       await this.locationsRepository.delete(id);
     }
-
-    const admin = await this.adminRepository.findById(userId);
-
-    if (admin) {
-      if (admin.type.deleteLocations) {
-        await this.locationsRepository.delete(id);
-      } else {
-        throw new AppError('O ADM não tem permissão.');
-      }
-    }
+    throw new AppError('O usuário não existe.');
   }
 }

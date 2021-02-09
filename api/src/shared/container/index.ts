@@ -4,6 +4,8 @@ import AdminRepository from '@modules/admin/infra/typeorm/repositories/AdminRepo
 import IAdminRepository from '@modules/admin/interfaces/IAdminRepository';
 import LocationsRepository from '@modules/locations/infra/typeorm/repositories/LocationsRepository';
 import ILocationsRepository from '@modules/locations/interfaces/ILocationsRepository';
+import PaymentsRepository from '@modules/payments/infra/typeorm/repositories/PaymentsRepository';
+import IPaymentsRepository from '@modules/payments/interfaces/IPaymentsRepository';
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import IProductsRepository from '@modules/products/interfaces/IProductsRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
@@ -34,4 +36,9 @@ container.registerSingleton<IAdminTypesRepository>(
 container.registerSingleton<ILocationsRepository>(
   'LocationsRepository',
   LocationsRepository,
+);
+
+container.registerSingleton<IPaymentsRepository>(
+  'PaymentsRepository',
+  PaymentsRepository,
 );

@@ -1,5 +1,7 @@
 import adminRouter from '@modules/admin/infra/routes/admin.routes';
 import authAdminRouter from '@modules/admin/infra/routes/authAdmin.routes';
+import locationsRouter from '@modules/locations/infra/routers/locations.routes';
+import paymentsRouter from '@modules/payments/infra/routes/payments.routes';
 import authProductsRouter from '@modules/products/infra/routes/authProducts.routes';
 import productsRouter from '@modules/products/infra/routes/products.routes';
 import authUsersRouter from '@modules/users/infra/routes/authUsersRouter.routes';
@@ -16,11 +18,11 @@ router.use('/products', productsRouter);
 router.use('/auth/products', authProductsRouter);
 router.use('/admin', adminRouter);
 router.use('/auth/admin', authAdminRouter);
+router.use('/auth/payments', paymentsRouter);
+router.use('/auth/locations', locationsRouter);
 
 // router.use('/categories');
-// router.use('/locations');
 // router.use('/orders');
-// router.use('/payments');
 // router.use('/products');
 
 export default router;

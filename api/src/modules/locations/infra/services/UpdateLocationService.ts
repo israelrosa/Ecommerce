@@ -6,6 +6,7 @@ import { inject, injectable } from 'tsyringe';
 import Location from '../typeorm/entities/Location';
 
 interface IParams {
+  isAdmin: boolean;
   userId: string;
   id: string;
   city: string;
@@ -43,13 +44,36 @@ export default class UpdateLocationService {
     zipCode,
     userId,
     id,
+    isAdmin,
   }: IParams): Promise<Location> {
-    const user = await this.usersRepository.findById(userId);
     const location = await this.locationsRepository.findById(id);
 
     if (!location) {
       throw new AppError('A localização não existe.');
     }
+
+    if (isAdmin) {
+      const admin = await this.adminRepository.findById(userId);
+
+      if (admin) {
+        if (!admin.type.updateLocations) {
+          throw new AppError('O ADM não tem permissão.');
+        }
+        Object.assign(location, {
+          city,
+          complement,
+          neighborhood,
+          state,
+          street,
+          zipCode,
+        });
+
+        const result = await this.locationsRepository.update(location);
+
+        return result;
+      }
+    }
+    const user = await this.usersRepository.findById(userId);
 
     if (user) {
       if (user.id !== location.userId) {
@@ -58,25 +82,6 @@ export default class UpdateLocationService {
         );
       }
 
-      Object.assign(location, {
-        city,
-        complement,
-        neighborhood,
-        state,
-        street,
-        zipCode,
-      });
-
-      const result = await this.locationsRepository.update(location);
-
-      return result;
-    }
-    const admin = await this.adminRepository.findById(userId);
-
-    if (admin) {
-      if (!admin.type.updateLocations) {
-        throw new AppError('O ADM não tem permissão.');
-      }
       Object.assign(location, {
         city,
         complement,

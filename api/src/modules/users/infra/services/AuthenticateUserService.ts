@@ -41,7 +41,7 @@ class AuthenticateUserService {
       throw new AppError('Combinação Incorreta.');
     }
 
-    const token = sign({}, authConfig.secret, {
+    const token = sign({ admin: false }, authConfig.secret, {
       subject: user.id,
       expiresIn: authConfig.expiresIn,
     });
