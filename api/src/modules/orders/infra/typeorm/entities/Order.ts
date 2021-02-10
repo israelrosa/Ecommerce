@@ -29,9 +29,6 @@ export default class Order {
   locationId: string;
 
   @Column()
-  orderProductsId: string;
-
-  @Column()
   orderStatusId: string;
 
   @CreateDateColumn()
@@ -41,7 +38,7 @@ export default class Order {
   updated_at: Date;
 
   @OneToMany(() => OrderProduct, op => op.order)
-  orderProduct: OrderProduct[];
+  orderProducts: OrderProduct[];
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
@@ -55,7 +52,7 @@ export default class Order {
   @JoinColumn({ name: 'paymentId' })
   payment: Payment;
 
-  @ManyToOne(() => OrderStatus)
+  @ManyToOne(() => OrderStatus, { eager: true })
   @JoinColumn({ name: 'orderStatusId' })
   orderStatus: OrderStatus;
 }

@@ -4,6 +4,10 @@ import AdminRepository from '@modules/admin/infra/typeorm/repositories/AdminRepo
 import IAdminRepository from '@modules/admin/interfaces/IAdminRepository';
 import LocationsRepository from '@modules/locations/infra/typeorm/repositories/LocationsRepository';
 import ILocationsRepository from '@modules/locations/interfaces/ILocationsRepository';
+import OrderStatusRepository from '@modules/orders/dependencies/orderStatus/infra/typeorm/repositories/OrderStatusRepository';
+import IOrderStatusRepository from '@modules/orders/dependencies/orderStatus/interfaces/IOrderStatusRepository';
+import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
+import IOrdersRepository from '@modules/orders/interfaces/IOrdersRepository';
 import PaymentsRepository from '@modules/payments/infra/typeorm/repositories/PaymentsRepository';
 import IPaymentsRepository from '@modules/payments/interfaces/IPaymentsRepository';
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
@@ -41,4 +45,14 @@ container.registerSingleton<ILocationsRepository>(
 container.registerSingleton<IPaymentsRepository>(
   'PaymentsRepository',
   PaymentsRepository,
+);
+
+container.registerSingleton<IOrdersRepository>(
+  'OrdersRepository',
+  OrdersRepository,
+);
+
+container.registerSingleton<IOrderStatusRepository>(
+  'OrderStatusRepository',
+  OrderStatusRepository,
 );

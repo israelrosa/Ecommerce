@@ -1,5 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { getRepository, Repository } from 'typeorm';
+import ICreateAdminTypesDTO from '../../../interfaces/dtos/ICreateAdminTypesDTO';
 import IAdminTypesRepository from '../../../interfaces/IAdminTypesRepository';
 import AdminType from '../entities/AdminType';
 
@@ -10,10 +11,39 @@ export default class AdminTypesRepository implements IAdminTypesRepository {
     this.ormRepository = getRepository(AdminType);
   }
 
-  async create(type: string, permission: boolean): Promise<AdminType> {
+  async create({
+    createAdmins,
+    createOrderStatus,
+    createProducts,
+    deleteAdmins,
+    deleteLocations,
+    deleteOrderStatus,
+    deleteOrders,
+    deleteProducts,
+    deleteUsers,
+    type,
+    updateAdmins,
+    updateLocations,
+    updateOrders,
+    updateProducts,
+    updateUsers,
+  }: ICreateAdminTypesDTO): Promise<AdminType> {
     const data = await this.ormRepository.create({
+      createAdmins,
+      createOrderStatus,
+      createProducts,
+      deleteAdmins,
+      deleteLocations,
+      deleteOrderStatus,
+      deleteOrders,
+      deleteProducts,
+      deleteUsers,
       type,
-      adminPermissions: permission,
+      updateAdmins,
+      updateLocations,
+      updateOrders,
+      updateProducts,
+      updateUsers,
     });
 
     const result = await this.ormRepository.save(data);
