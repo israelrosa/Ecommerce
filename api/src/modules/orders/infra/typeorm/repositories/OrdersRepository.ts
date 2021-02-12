@@ -33,7 +33,7 @@ export default class OrdersRepository implements IOrdersRepository {
     const result = await this.ormRepository.delete(id);
 
     if (!result.affected) {
-      throw new AppError('Não foi possível deletar a localização.');
+      throw new AppError('Não foi possível deletar o pedido.');
     }
   }
 

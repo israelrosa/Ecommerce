@@ -25,6 +25,10 @@ export default interface ICreateAdminTypesDTO {
 
   deleteOrderStatus: boolean;
 
+  updateOrderProducts: boolean;
+
+  deleteOrderProducts: boolean;
+
   deleteUsers: boolean;
 
   updateUsers: boolean;

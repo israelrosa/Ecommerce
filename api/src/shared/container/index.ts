@@ -4,12 +4,16 @@ import AdminRepository from '@modules/admin/infra/typeorm/repositories/AdminRepo
 import IAdminRepository from '@modules/admin/interfaces/IAdminRepository';
 import LocationsRepository from '@modules/locations/infra/typeorm/repositories/LocationsRepository';
 import ILocationsRepository from '@modules/locations/interfaces/ILocationsRepository';
+import OrderProductsRepository from '@modules/orders/dependencies/orderProducts/infra/typeorm/repositories/OrderProductsRepository';
+import IOrderProductsRepository from '@modules/orders/dependencies/orderProducts/interfaces/IOrderProductsRepository';
 import OrderStatusRepository from '@modules/orders/dependencies/orderStatus/infra/typeorm/repositories/OrderStatusRepository';
 import IOrderStatusRepository from '@modules/orders/dependencies/orderStatus/interfaces/IOrderStatusRepository';
 import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
 import IOrdersRepository from '@modules/orders/interfaces/IOrdersRepository';
 import PaymentsRepository from '@modules/payments/infra/typeorm/repositories/PaymentsRepository';
 import IPaymentsRepository from '@modules/payments/interfaces/IPaymentsRepository';
+import CategoriesRepository from '@modules/products/dependencies/categories/infra/typeorm/repositories/CategoriesRepository';
+import ICategoriesRepository from '@modules/products/dependencies/categories/interfaces/ICategoriesRepository';
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import IProductsRepository from '@modules/products/interfaces/IProductsRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
@@ -55,4 +59,14 @@ container.registerSingleton<IOrdersRepository>(
 container.registerSingleton<IOrderStatusRepository>(
   'OrderStatusRepository',
   OrderStatusRepository,
+);
+
+container.registerSingleton<IOrderProductsRepository>(
+  'OrderProductsRepository',
+  OrderProductsRepository,
+);
+
+container.registerSingleton<ICategoriesRepository>(
+  'CategoriesRepository',
+  CategoriesRepository,
 );

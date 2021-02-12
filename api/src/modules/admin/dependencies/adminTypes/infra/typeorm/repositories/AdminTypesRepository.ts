@@ -27,6 +27,8 @@ export default class AdminTypesRepository implements IAdminTypesRepository {
     updateOrders,
     updateProducts,
     updateUsers,
+    deleteOrderProducts,
+    updateOrderProducts,
   }: ICreateAdminTypesDTO): Promise<AdminType> {
     const data = await this.ormRepository.create({
       createAdmins,
@@ -44,6 +46,8 @@ export default class AdminTypesRepository implements IAdminTypesRepository {
       updateOrders,
       updateProducts,
       updateUsers,
+      deleteOrderProducts,
+      updateOrderProducts,
     });
 
     const result = await this.ormRepository.save(data);

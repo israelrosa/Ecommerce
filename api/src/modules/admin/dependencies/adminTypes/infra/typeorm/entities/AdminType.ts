@@ -45,6 +45,12 @@ export default class AdminType {
   deleteOrderStatus: boolean;
 
   @Column()
+  updateOrderProducts: boolean;
+
+  @Column()
+  deleteOrderProducts: boolean;
+
+  @Column()
   deleteUsers: boolean;
 
   @Column()

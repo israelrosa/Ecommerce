@@ -3,6 +3,8 @@ import authAdminRouter from '@modules/admin/infra/routes/authAdmin.routes';
 import locationsRouter from '@modules/locations/infra/routers/locations.routes';
 import ordersRouter from '@modules/orders/infra/routes/orders.routes';
 import paymentsRouter from '@modules/payments/infra/routes/payments.routes';
+import authCategoriesRouter from '@modules/products/dependencies/categories/infra/routes/authCategories.routes';
+import productPhotosRouter from '@modules/products/dependencies/photos/infra/routes/productPhotos.routes';
 import authProductsRouter from '@modules/products/infra/routes/authProducts.routes';
 import productsRouter from '@modules/products/infra/routes/products.routes';
 import authUsersRouter from '@modules/users/infra/routes/authUsersRouter.routes';
@@ -17,13 +19,12 @@ router.use('/auth/users', authUsersRouter);
 router.use('/users', usersRouter);
 router.use('/products', productsRouter);
 router.use('/auth/products', authProductsRouter);
+router.use('/auth/products/photos', productPhotosRouter);
 router.use('/admin', adminRouter);
 router.use('/auth/admin', authAdminRouter);
 router.use('/auth/payments', paymentsRouter);
 router.use('/auth/locations', locationsRouter);
 router.use('/auth/orders', ordersRouter);
-
-// router.use('/categories');
-// router.use('/products');
+router.use('/auth/categories', authCategoriesRouter);
 
 export default router;

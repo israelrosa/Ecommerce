@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 import DeleteProfileService from '../services/DeleteProfileService';
 import ShowProfileService from '../services/ShowProfileService';
 import UpdateProfileService from '../services/UpdateProfileService';
+import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
 
 export default class AuthUsersController {
   async update(req: Request, res: Response): Promise<Response> {
@@ -33,21 +34,25 @@ export default class AuthUsersController {
   }
 
   async delete(req: Request, res: Response): Promise<Response> {
-    const { id } = req.user;
-
     const deleteProfile = container.resolve(DeleteProfileService);
 
-    await deleteProfile.execute(id);
+    await deleteProfile.execute(req.user.id);
 
     return res.json('O usuário foi deletado.');
   }
 
   async showProfile(req: Request, res: Response): Promise<Response> {
-    const { id } = req.user;
-
     const showProfile = container.resolve(ShowProfileService);
 
-    const data = showProfile.execute(id);
+    const data = showProfile.execute(req.user.id);
+
+    return res.json(data);
+  }
+
+  async updateAvatar(req: Request, res: Response): Promise<Response> {
+    const avatar = container.resolve(UpdateUserAvatarService);
+
+    const data = await avatar.execute(req.file.filename, req.user.id);
 
     return res.json(data);
   }
